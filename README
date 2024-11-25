@@ -1,0 +1,15 @@
+Michael McMahon mam1198
+
+spchk works by first creating an array of valid dictionary words from the file given by the first argument. It adds each word (separated by spaces and newlines) 
+to the array along with an initial-capital version and an all-capital version. The array is then sorted. The program then processes the text files it will be checking 
+for errors. The program checks whether additional arguments past the dictionary path are text files or directories. If the argument is a text file,
+the program opens it and records its file identifier. If an argument is a direcetory the program calls the dirtraverse function, which recursively traverses the array, 
+opens all of the text files it finds and records their file identifiers. The program then creates an array of all of its words annotated with their position 
+and the name of their file, checks whether each of these words is in the sorted array made from the dictionary and prints the annotated word if it isn't for each
+of the opened text files. This is how spelling errors are reported.
+
+The testing plan contains nine test scenarios which cover all of the requirements of the program. They ensure that it handles arguments - both directories
+and text files - correctly. It also checks that the program handles hyphenated words, words with punctuation and brackets and different capitalizations
+of words correctly as described in the writeup. Once spchk is created by entering make into the command line, the tests are performed by entering each
+command they specified into the command line. The directory bigtest and the text files test1, test2, test3, test4, test5 and test6 are used as arguments to test
+each requirement. 

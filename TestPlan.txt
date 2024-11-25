@@ -1,0 +1,109 @@
+Test case 1: The program can open a text file and scan it for spelling errors and doesn’t report any if there are none. 
+
+./spchk /usr/share/dict/words test1
+Test1: a text file containing the line:
+Excellent
+
+Expected: The program returns no spelling errors
+
+Test case 2: The program can open a text file and report its spelling errors
+
+./spchk /usr/share/dict/words test2
+Test2: a text file containing the line:
+vjdsnkuienjkf
+
+Expected: 
+test2 (1,1): vjdsnkuienjkf
+
+Test case 3: The program reports the correct row and column index of a spelling error.
+
+./spchk /usr/share/dict/words test3
+Test3: a text file containing:
+Apple orange banana grape
+Cauliflower tomato ahfbkjehba carrot
+Blueberry strawberry
+
+Expected:
+test3 (2,20): ahfbkjehba
+
+Test case 4: The program ignores trailing punctuation on words and quotation marks and brackets at the beginning of words
+
+./spchk /usr/share/dict/words test4
+Test4: a textfile containing the line
+Football!? Soccer,. "'Baseball ([{Basketball
+
+Expected: the program reports no errors
+
+Test case 5: The program doesn’t consider hyphenated words to be errors as long as all of their component words are correctly spelled.
+
+./spchk /usr/share/dict/words test5
+Test5: a text file containing:
+dog-cat-bird
+rhinosaurus-ajnkijn
+apple-sgdgsa-Cauliflower
+asuingeuinc-sun
+
+Expected:
+test5 (2,1): rhinosaurus-ajnkijn
+test5 (3,1): apple-sgdgsa-Cauliflower
+test5 (4,1): asuingeuinc-sun
+
+Test case 6: The program accepts three variations of a word based on capitalization: regular, initial capital and all capitals. It rejects a spelling if it contains a letter that is not capital when the dictionary version has that letter as capital. 
+
+./spchk /usr/share/dict/words test6
+
+Test6: a text file containing:
+hello Hello HELLO HeLlO
+MacDonald MACDONALD Macdonald macdonald
+
+Expected:
+test6 (1,19): HeLlO
+test6 (2,21): Macdonald
+test6 (2,31): macdonald
+
+Test case 7: The program recursively searches a provided directory and scans all of its contained files for errors. 
+bigtest: a directory containing multiple subdirectories, which contain text files to be scanned.
+
+./spchk /usr/share/dict/words bigtest
+
+Expected:
+bigtest/level1.txt (3,43): HeLlO
+bigtest/level1.txt (5,35): Macdonald
+bigtest/level1.txt (5,48): macdonald
+bigtest/subdir1/level2.txt (1,84): punctu-
+bigtest/subdir1/level2.txt (2,1): ation
+bigtest/subdir1/level2.txt (2,82): (’
+bigtest/subdir1/level2.txt (2,91): ")
+bigtest/subdir1/subdir2/level3.txt (1,31): sdngsdjnfs
+bigtest/subdir1/subdir2/level3.txt (1,57): swows
+bigtest/subdir1/subdir2/level3.txt (2,100): apgdsaga
+
+Test case 8: The program accepts multiple files as arguments and correctly reports the errors in all of them
+
+./spchk /usr/share/dict/words test1 test2 test3
+
+Expected:
+test3 (2,20): ahfbkjehba
+test2 (1,1): vjdsnkuienjkf
+
+Test case 9: The program accepts file a combination of text file paths and directories as arguments and correctly reports the errors of all text files
+
+./spchk /usr/share/dict/words test5 test6 bigtest
+
+Expected:
+bigtest/level1.txt (3,43): HeLlO
+bigtest/level1.txt (5,35): Macdonald
+bigtest/level1.txt (5,48): macdonald
+bigtest/subdir1/level2.txt (1,84): punctu-
+bigtest/subdir1/level2.txt (2,1): ation
+bigtest/subdir1/level2.txt (2,82): (’
+bigtest/subdir1/level2.txt (2,91): ")
+bigtest/subdir1/subdir2/level3.txt (1,31): sdngsdjnfs
+bigtest/subdir1/subdir2/level3.txt (1,57): swows
+bigtest/subdir1/subdir2/level3.txt (2,100): apgdsaga
+test6 (1,19): HeLlO
+test6 (2,21): Macdonald
+test6 (2,31): macdonald
+test5 (2,1): rhinosaurus-ajnkijn
+test5 (3,1): apple-sgdgsa-Cauliflower
+test5 (4,1): asuingeuinc-sun

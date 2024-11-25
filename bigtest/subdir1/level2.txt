@@ -1,0 +1,3 @@
+Trailing punctuation To avoid problems with common sentence punctuation, we ignore punctu-
+ation marks occurring at the end of a word. Similarly, we ignore quotation marks (’ and ") and
+brackets at the start of a word.

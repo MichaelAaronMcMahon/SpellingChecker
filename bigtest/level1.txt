@@ -1,0 +1,5 @@
+Capitalization We allow up to three variations of a word based on capitalization regular initial
+capital and all capitals That is if our dictionary contains hello we would consider hello Hello
+and HELLO to be correctly spelled but not HeLlO
+Note that capital letters in the dictionary must be capital if the dictionary contains MacDonald
+we would accept MACDONALD but not Macdonald or macdonald

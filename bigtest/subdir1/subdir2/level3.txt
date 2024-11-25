@@ -1,0 +1,2 @@
+For our purposes, a text file sdngsdjnfs contains bytes swows encoding characters using the ASCII encoding. A text
+file can be broken into lines, which are a sequence of characters ending with a newline character. apgdsaga apples-and-oranges
