@@ -1,4 +1,4 @@
-Michael McMahon mam1198
+Michael McMahon
 
 spchk works by first creating an array of valid dictionary words from the file given by the first argument. It adds each word (separated by spaces and newlines) 
 to the array along with an initial-capital version and an all-capital version. The array is then sorted. The program then processes the text files it will be checking 
